@@ -21,7 +21,7 @@ const showOnPage = function (text) {
     },
     howDayWent:'',
 
-    determineDayType: function(dayStatus){
+    determineDayType: function(wellRested, niceBreakfast, haveWork, schoolTimeTotal){
         if (wellRested === true && niceBreakfast === true && haveWork === false && schoolTimeTotal === 0){
             this.howDayWent = this.effectOfDay.wonderfulDay
           }else if (wellRested === true && niceBreakfast === true && haveWork === true && schoolTimeTotal === 0 ){
@@ -34,13 +34,13 @@ const showOnPage = function (text) {
     },
   }
   dayStatus.determineDayType(true, true, false, 0)
-  showOnPage('As of now ${dayStatus.howDayWent}')
+  showOnPage('As of now,' + dayStatus.howDayWent)
 
   dayStatus.determineDayType(true, true, true, 0)
-  showOnPage('As of now ${dayStatus.howDayWent}')
+  showOnPage('As of now,' + dayStatus.howDayWent)
 
   dayStatus.determineDayType(true, true, false, 4)
-  showOnPage('As of now ${dayStatus.howDayWent}')
+  showOnPage('As of now,' + dayStatus.howDayWent)
 
   dayStatus.determineDayType(true, true, true, 6)
-  showOnPage('As of now ${dayStatus.howDayWent}')
+  showOnPage('As of now,' + dayStatus.howDayWent)
