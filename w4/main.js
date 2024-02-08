@@ -57,8 +57,15 @@ function start(houseHoldMembers, houseArea) {
 }
 
 function displayOutput(){
-  
-}
+  for (arr of cfpData){
+    console.log(arr)
+    const output = document.getElementById("output")
+    const newP = document.createElement("p")
+    newP.textContent = `Cardon Footprint total is ${arr[4]} the number of household members is ${arr[0]}, the score for house members is 
+    ${arr[2]}, the house hold size is ${arr[1]}, the score for house size is ${arr[3]}`;
+    output.appendChild(newP)
+  }
+  } 
 
 start(1,"small");
 start(1,"medium");
