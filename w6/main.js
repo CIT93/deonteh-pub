@@ -1,6 +1,7 @@
-const FORM = document.getElementById("form")
+const FORM = document.getElementById("form");
 const OUTPUT = document.getElementById("output");
 const cfpData = [];
+
 function determineHouseSizePts(size) {
   let houseSizePoints = 0;
   if (size === "large") {
@@ -9,70 +10,70 @@ function determineHouseSizePts(size) {
     houseSizePoints = 7;
   } else if (size === "small") {
     houseSizePoints = 4;
-  } else if (size === "apt") {
+  } else if (size === "apartment") {
     houseSizePoints = 2;
-  }
+  };
   return houseSizePoints;
-}
+};
 
 function determineHouseHoldPts(numberInHousehold) {
-  let houseHoldPts = 0;
+  let houseHoldPoints = 0;
   if (numberInHousehold === 1) {
-    houseHoldPts = 14;
+    houseHoldPoints = 14;
   } else if (numberInHousehold === 2) {
-    houseHoldPts = 12;
+    houseHoldPoints = 12;
   } else if (numberInHousehold === 3) {
-    houseHoldPts = 10;
+    houseHoldPoints = 10;
   } else if (numberInHousehold === 4) {
-    houseHoldPts = 8;
+    houseHoldPoints = 8;
   } else if (numberInHousehold === 5) {
-    houseHoldPts = 6;
+    houseHoldPoints = 6;
   } else if (numberInHousehold === 6) {
-    houseHoldPts = 4;
+    houseHoldPoints = 4;
   } else if (numberInHousehold > 6) {
-    houseHoldPts = 2;
-  }
-  return houseHoldPts;
-}
+    houseHoldPoints = 2;
+  };
+  return houseHoldPoints;
+};
 
-function start(houseHoldMembers, houseSize) {
+function displayOutput(obj) {
+  for (obj of cfpData) {
+    const newH1 = document.createElement("h1");
+    newH1.textContent = `Hello ${obj.firstN} ${obj.lastN},`;
+    const newH2 = document.createElement("h2");
+    newH2.textContent = `Your Carbon Footprint total score is ${obj.cfpTotal}`;
+    const newP = document.createElement("p");
+    newP.textContent = `This Carbon Footprint total score is based on the ${obj.houseM} people in your household (score of ${obj.houseMPTS}) living in a(n) ${obj.houseS} sized home (score of ${obj.houseSPTS}).`;
+    newP.textContent += ` The Carbon Footprint household and home size scores total to ${obj.cfpTotal}.`;
+    OUTPUT.appendChild(newH1);
+    OUTPUT.appendChild(newH2);
+    OUTPUT.appendChild(newP);
+  };
+};
+
+function start(firstName, lastName, houseHoldMembers, houseSize) {
   const houseHoldPTS = determineHouseHoldPts(houseHoldMembers);
   const houseSizePTS = determineHouseSizePts(houseSize);
   const total = houseHoldPTS + houseSizePTS;
   cfpData.push({
+    firstN: firstName,
+    lastN: lastName,
     houseM: houseHoldMembers,
     houseS: houseSize,
     houseMPTS: houseHoldPTS,
     houseSPTS: houseSizePTS,
-    cfpTotal: total
+    cfpTotal: total,
   });
-}
-
-function displayOutput() {
-  for (obj of cfpData) {
-    const newH2 = document.createElement("h2");
-    newH2.textContent = `Carbon Footprint Total of ${obj.cfpTotal}`;
-    const newP = document.createElement("p");
-    newP.textContent = `Members of household of ${obj.houseM} (Score: ${obj.houseMPTS}),`;
-    newP.textContent += ` and a ${obj.houseS} size home (Score:${obj.houseSPTS}).`;
-    OUTPUT.appendChild(newH2);
-    OUTPUT.appendChild(newH3);
-    OUTPUT.appendChild(newP)
-  }
-}
+};
 
 FORM.addEventListener('submit', function(e){
   e.preventDefault();
-  const firstName = FORM.firsname.value
-  const lastName = FORM.lastname.value
-  const houseMembers = parseInt(FORM.housemembers.value)
-  const houseSize = FORM.housesize.value
-  start(houseHoldMembers, houseSize)
+  const firstName = FORM.firstname.value;
+  const lastName = FORM.lastname.value;
+  const houseHoldMembers = parseInt(FORM.household.value);
+  const houseSize = FORM.housesize.value;
+  start(firstName, lastName, houseHoldMembers, houseSize);
   OUTPUT.innerHTML = "";
-  displayOutput()
-  FORM.reset()
-})
-
-// The apartment is not correct because ot needs to be the same in both files
-
-// Users dont always give good data!
+  displayOutput();
+  FORM.reset();
+});

@@ -1,58 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script defer src="main.js"></script>
-    <title>Week 6 Carbon Footprint - pub</title>
-    <style>
-      html {
-        font-size: 22px;
-      }
-      body {
-        background-color: #333;
-        color: whitesmoke;
-      }
-      input:in-range {
-        background-color: lightgreen;
-      }
-      input:out-of-range{
-        background-color: lightcoral ;
-      }
-    </style>
-  </head>
-  <body>
-    <form id="form">
-      <fieldset>
-        <legend>Calculating Your Carbon Footprint Points</legend>
 
-        <div>
-          <label for="">First Name </label>
-          <input type="text" name="Firstname" required />
-        </div>
-        <div>
-          <label for="">Last Name</label>
-          <input type="text" name="Lastname" required />
-        </div>
-        <div>
-          <label for="">Count the Members of Your Household </label>
-          <input type="number" name="housemembers" min="1" max="6"  required />
-        </div>
-        <div>
-          <label for="">Consider the Size of Your Home</label>
-        <select name="housesize" required>
-          <option value="">---Please Enter Size of Home</option>
-          <option value="apt">Apartment</option>
-          <option value="large">Large</option>
-          <option value="medium">Medium</option>
-          <option value="small">Small</option>
-        
-        </select>
-        
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 6 - Carbon Footprint</title>
+    <script defer src="main.js"></script>
+    <style>
+        html {
+            font-size: 22px;
+        }
+
+        body {
+            background-color: rgb(16, 19, 210);
+            color: rgb(245, 246, 254);
+        }
+
+        input:in-range {
+            background-color: lightgreen;
+        }
+
+        input:out-of-range {
+            background-color: lightcoral;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="form">
+        <fieldset>
+            <legend>Calculating Your Carbon Footprint Points</legend>
+            <div>
+                <label for="">First Name:</label>
+                <input type="text" name="firstname" maxlength="20" required>
+            </div>
+            <div>
+                <label for="">Last Name:</label>
+                <input type="text" name="lastname" maxlength="20" required>
+            </div>
+            <div>
+                <label for="">Count the members of your household:</label>
+                <input type="number" name="household" min="1" max="6" required>
+            </div>
+            <div>
+                <label for="">Consider the size of your home:</label>
+                <!-- <input type="text" name="housesize" required> -->
+                <select name="housesize" required>
+                    <option value="">---Please enter size of home---</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="small">Small</option>
+                    <option value="medium">Medium</option>
+                    <option value="large">Large</option>
+                </select>
+            </div>
+        </fieldset>
         <button type="submit">Submit</button>
-      </fieldset>
     </form>
-    <div id="output"></div>
-  </body>
+    <div id="output">
+    </div>
+</body>
+
 </html>
