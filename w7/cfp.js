@@ -31,3 +31,4 @@ function determineHouseSizePts(size) {
     };
     return houseHoldPoints;
   };
+  export{determineHouseHoldPts, determineHouseSizePts};
